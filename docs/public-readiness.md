@@ -1,14 +1,14 @@
 # First release checklist / Checklist do primeiro lançamento
 
-The source is being prepared for public use. This checklist does not publish a
-repository or a package. Version 0.1.0 is still unreleased.
+Historical record of the first release, completed on 2026-10-03. This checklist
+is retained for reference; future versions follow the reusable release guide.
 
-GitHub: [aDDxD/rigseed](https://github.com/aDDxD/rigseed), public repository created.
-Package: `@addxd/rigseed`; npm login `addxd` verified on 2026-10-03.
-The npm registry returned E404 for the package on that date. The source has been
-pushed to GitHub and hosted CI passed installation, lint, typecheck, 39 tests and
-build. Private vulnerability reporting is enabled; repository description and
-topics are configured. npm publication is still pending.
+GitHub: [aDDxD/rigseed](https://github.com/aDDxD/rigseed).
+npm: [@addxd/rigseed@0.1.0](https://www.npmjs.com/package/@addxd/rigseed), published
+at 2026-10-03T18:59:42Z and confirmed accessible through the registry and npx.
+The published tarball checksum and contents match commit `ed15b07`.
+GitHub CI passed installation, lint, typecheck, 39 tests and build.
+Private vulnerability reporting is enabled; description and topics are configured.
 
 ## Repository and user documentation
 
@@ -43,23 +43,25 @@ topics are configured. npm publication is still pending.
 - [x] Enable GitHub private vulnerability reporting so SECURITY.md has a usable channel.
 - [x] Run the existing CI on GitHub; it does not publish packages.
 
-## Before publishing npm manually
+## npm publication
 
 - [x] Confirm control of the npm scope `@addxd` or choose an owned package name.
 - [x] Confirm the selected package is not present in the npm registry (E404; recheck before publishing).
 - [x] Keep the confirmed package name consistent in metadata and both READMEs.
 - [x] Inspect `pnpm pack` contents and perform a final local tarball smoke test (2026-10-03).
-- [ ] Review npm account security, package access and the manual publication command.
-- [ ] Publish only after an explicit maintainer decision; no release automation or secrets.
-- [ ] After success, update the unpublished notice and changelog to reflect the actual release.
+- [x] Complete interactive npm authentication and verify public package access.
+- [x] Maintainer published 0.1.0 manually; no release automation or repository secrets.
+- [x] After success, update the GitHub READMEs and changelog to reflect the release.
+- [x] Verify published package commands in temporary HOME, preserving existing user files.
 
 ## Resumo em português
 
-O repositório público `aDDxD/rigseed` foi criado e os links foram preenchidos.
-O login npm `addxd` foi confirmado; o pacote ainda não foi publicado. O código
-está no GitHub e a CI passou com 39 testes. Reports privados de segurança foram
-habilitados. A etapa restante é a publicação manual no npm.
-Antes do npm, revise a segurança da conta, valide o tarball e publique somente
-por decisão explícita. A verificação local integrada está em `discovery.md`.
+Primeiro lançamento concluído. Código público, CI verde e versão 0.1.0 disponível
+no npm. O pacote distribuído foi testado com os seis comandos em HOME temporário,
+incluindo init normal/portable, idempotência e preservação no uninstall.
+O artefato corresponde ao commit `ed15b07`; a documentação atualizada está no GitHub.
+O tarball npm é imutável e conserva os documentos do momento da publicação:
+correções posteriores nesses documentos entram no pacote de uma versão futura.
+A configuração real do usuário não foi alterada durante a validação.
 
-Use [the reusable release guide](publishing.pt-BR.md) for publication and future versions.
+Use [the reusable release guide](publishing.pt-BR.md) for future versions.

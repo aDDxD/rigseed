@@ -2,14 +2,13 @@
 
 [Português (Brasil)](README.pt-BR.md)
 
-[Source](https://github.com/aDDxD/rigseed) · [Issues](https://github.com/aDDxD/rigseed/issues) · [Contributing](CONTRIBUTING.md)
+[npm](https://www.npmjs.com/package/@addxd/rigseed) · [Source](https://github.com/aDDxD/rigseed) · [Issues](https://github.com/aDDxD/rigseed/issues) · [Contributing](CONTRIBUTING.md)
 
 A small TypeScript CLI for reproducible **Codex CLI** configuration. Keep agent
 roles and policies versioned, choose models and reasoning efforts, and apply only
 the parts that rigseed owns. No other providers are implemented.
 
-**Status:** 0.1.0 is unreleased and not yet published to npm. The package name
-is `@addxd/rigseed`. There is no automatic publication, telemetry, daemon or
+**Status:** version 0.1.0 is published as `@addxd/rigseed`. There is no automatic publication, telemetry, daemon or
 installation hook.
 
 ## What it changes
@@ -36,7 +35,17 @@ use only global `setup` and maintain project instructions yourself, without `ini
 - Codex CLI **0.160.x** installed on `PATH`; rigseed does not install Codex.
 - Git for project commands.
 
-Until npm publication, use a local clone:
+Run the published version without a global installation:
+
+```bash
+npx @addxd/rigseed@0.1.0 setup --dry-run
+npx @addxd/rigseed@0.1.0 setup
+npx @addxd/rigseed@0.1.0 doctor --global
+# Inside a Git repository, optionally:
+npx @addxd/rigseed@0.1.0 init
+```
+
+For development or direct use of the source, clone the repository:
 
 ```bash
 git clone https://github.com/aDDxD/rigseed.git
@@ -59,15 +68,6 @@ To exercise the packaged binary locally without publishing:
 package_dir=$(mktemp -d)
 pnpm pack --pack-destination "$package_dir"
 npx --package "$package_dir/addxd-rigseed-0.1.0.tgz" rigseed --help
-```
-
-**After a future npm publication**, a pinned version would be usable as:
-
-```bash
-npx @addxd/rigseed@0.1.0 setup
-# In a Git repository:
-npx @addxd/rigseed@0.1.0 init
-npx @addxd/rigseed@0.1.0 doctor
 ```
 
 `rigseed` below means the installed binary; with the clone, use

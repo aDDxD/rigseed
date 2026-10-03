@@ -91,3 +91,15 @@ was verified after resolving the lockfile with pnpm.
 - Local Markdown links were checked. Source and packed contents were inspected
   for machine home paths, credential patterns and unintended generated files;
   no findings. This inspection is not a formal security audit.
+
+## Published-package validation — 2026-10-03
+
+`@addxd/rigseed@0.1.0` became available through the registry. Its SHA-1 matches
+the maintainer's publication receipt, and every tarball file matches local commit
+`ed15b07`, also identified by the registry's gitHead. The published binary passed
+help/version and all six commands using temporary HOME/CODEX_HOME/XDG state.
+Global setup was idempotent; minimal init created no local Codex config; portable
+init included agent definitions; doctor/diff/update passed; uninstall preserved
+existing personal and project instructions and unrelated TOML settings.
+No configuration was installed in the real HOME. GitHub documentation was updated
+after publication; the immutable 0.1.0 tarball retains its original documentation.

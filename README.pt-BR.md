@@ -2,14 +2,13 @@
 
 [English](README.md)
 
-[Código](https://github.com/aDDxD/rigseed) · [Issues](https://github.com/aDDxD/rigseed/issues) · [Como contribuir](CONTRIBUTING.md)
+[npm](https://www.npmjs.com/package/@addxd/rigseed) · [Código](https://github.com/aDDxD/rigseed) · [Issues](https://github.com/aDDxD/rigseed/issues) · [Como contribuir](CONTRIBUTING.md)
 
 CLI pequena em TypeScript para configuração reproduzível do **Codex CLI**.
 Versione papéis e políticas, escolha modelos e reasoning efforts e aplique somente
 as partes pertencentes ao rigseed. Nenhum outro provider está implementado.
 
-**Estado:** 0.1.0 ainda não foi lançada nem publicada no npm. O nome do pacote é
-`@addxd/rigseed`.
+**Estado:** versão 0.1.0 publicada como `@addxd/rigseed`.
 Não há publicação automática, telemetria, daemon ou hook de instalação.
 
 ## O que muda
@@ -37,7 +36,17 @@ manualmente, sem executar `init`.
 - Codex CLI **0.160.x** no `PATH`; rigseed não instala o Codex.
 - Git para comandos de projeto.
 
-Até a publicação no npm, use um clone local:
+Execute a versão publicada sem instalação global:
+
+```bash
+npx @addxd/rigseed@0.1.0 setup --dry-run
+npx @addxd/rigseed@0.1.0 setup
+npx @addxd/rigseed@0.1.0 doctor --global
+# Dentro de um repositório Git, opcionalmente:
+npx @addxd/rigseed@0.1.0 init
+```
+
+Para desenvolver ou usar o código diretamente, clone o repositório:
 
 ```bash
 git clone https://github.com/aDDxD/rigseed.git
@@ -61,15 +70,6 @@ Para experimentar o pacote via npx sem publicar:
 package_dir=$(mktemp -d)
 pnpm pack --pack-destination "$package_dir"
 npx --package "$package_dir/addxd-rigseed-0.1.0.tgz" rigseed --help
-```
-
-**Depois de uma futura publicação no npm**, seria possível fixar uma versão:
-
-```bash
-npx @addxd/rigseed@0.1.0 setup
-# Dentro de um repositório Git:
-npx @addxd/rigseed@0.1.0 init
-npx @addxd/rigseed@0.1.0 doctor
 ```
 
 Nos exemplos seguintes, `rigseed` é o binário instalado; usando o clone,
