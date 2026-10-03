@@ -11,11 +11,10 @@ Do not publish secrets, real configuration dumps, ownership state or backups in 
 issue or pull request. Reports that concern accidental overwrites, unsafe paths,
 credential exposure or bypassing ownership checks should be private.
 
-On [GitHub Security](https://github.com/aDDxD/rigseed/security), use
-**Report a vulnerability** if private vulnerability reporting is enabled.
-Until a private channel is configured,
-do not post exploit details publicly; ask the maintainer to enable one through a
-public issue containing only the request for a private contact channel.
+Private vulnerability reporting is enabled. On
+[GitHub Security](https://github.com/aDDxD/rigseed/security), use
+**Report a vulnerability** to contact the maintainer privately.
+Do not submit vulnerability details through public issues.
 
 Include affected versions, a reproduction using synthetic files in a temporary
 HOME, expected behavior and observed impact. There is no guaranteed response SLA.
@@ -33,7 +32,6 @@ File/catalog checks do not prove account access or agent behavior in live sessio
 ## Português
 
 Reporte vulnerabilidades de forma privada. Não envie tokens, configurações reais,
-state ou backups. No GitHub, use **Security → Report a vulnerability**, quando
-habilitado. Se ainda não houver canal privado, abra somente uma solicitação para
-habilitar contato privado, sem detalhes do exploit. Use arquivos fictícios em HOME
+state ou backups. O canal privado está habilitado: use **Security → Report a vulnerability** no
+GitHub. Não publique detalhes de vulnerabilidades em issues públicas. Use arquivos fictícios em HOME
 temporário na reprodução. Não há SLA de resposta garantido.

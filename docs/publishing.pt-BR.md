@@ -1,22 +1,37 @@
-# Publicar o Rigseed
+# Publicar versões do Rigseed
 
-Guia para o mantenedor. A publicação é manual; a CI executa checks e não publica.
-Instalar ou publicar o pacote não aplica configuração do Codex.
+Guia para quem mantém o projeto, reutilizável depois do primeiro lançamento.
+A publicação é manual; a CI verifica o código e não publica. Publicar ou instalar
+um pacote não aplica configuração do Codex.
 
-## Estado em 2026-10-03
+## 1. Preparar a versão
 
-- Repositório público criado: [aDDxD/rigseed](https://github.com/aDDxD/rigseed).
-- Metadados do pacote, links e instruções de clone preenchidos.
-- Login npm `addxd` confirmado; nome do pacote: `@addxd/rigseed`.
-- O registry retornou E404; a versão 0.1.0 ainda não foi publicada.
-- O remote local `origin` aponta para o repositório informado.
-- Fonte revisada e primeiro commit preparados localmente, com validação do pacote.
-- Primeiro push, CI hospedada, autenticação do GitHub CLI e configuração do
-  canal privado de segurança ainda precisam ser concluídos.
+Trabalhe no [repositório oficial](https://github.com/aDDxD/rigseed). Mantenha os
+READMEs em inglês e português alinhados e registre mudanças no CHANGELOG.md.
+Para uma atualização, incremente a versão sem criar commit ou tag automaticamente:
 
-## 1. Validar localmente
+```bash
+npm version patch --no-git-tag-version
+pnpm install --lockfile-only
+```
 
-Na raiz do clone:
+Use `minor` para uma versão com novas funcionalidades e `major` quando apropriado
+para mudanças incompatíveis. Revise compatibilidade com atenção enquanto o projeto
+estiver em 0.x. No primeiro lançamento, mantenha a versão inicial já escolhida.
+
+Leia a versão e o nome diretamente do pacote para os próximos comandos:
+
+```bash
+rigseed_version=$(node -p "require('./package.json').version")
+rigseed_package=$(node -p "require('./package.json').name")
+```
+
+Prepare a entrada do changelog com a data do lançamento. Antes da primeira
+publicação, prepare também os READMEs para remover o aviso de pacote indisponível
+na versão que será distribuída. Não registre sucesso no checklist antes de o
+registry confirmar a publicação.
+
+## 2. Validar e inspecionar
 
 ```bash
 pnpm install --frozen-lockfile
@@ -27,24 +42,22 @@ pnpm run build
 npm publish --dry-run --access public
 ```
 
-O último comando não publica, mas executa os scripts de preparação. Confira a
-lista: código compilado, templates, exemplos e docs; sem credenciais, state,
-backups, testes ou node_modules. MIT e acesso público já estão configurados.
-Adicionar links ao package.json não exige alterar o lockfile. Se o nome ou as
-dependências mudarem, atualize-o com `pnpm install --lockfile-only`.
+O último comando não publica, mas executa os scripts de preparação. Confira que
+há código compilado, templates, exemplos e docs, sem credenciais, state, backups,
+testes ou node_modules. MIT e acesso público já estão configurados.
 
-## 2. Testar o pacote sem publicação
+## 3. Testar o pacote local
 
 ```bash
 rigseed_pack_dir=$(mktemp -d)
 pnpm pack --pack-destination "$rigseed_pack_dir"
-rigseed_tarball="$rigseed_pack_dir/addxd-rigseed-0.1.0.tgz"
+rigseed_tarball=$(find "$rigseed_pack_dir" -maxdepth 1 -name '*.tgz' -print -quit)
 tar -tzf "$rigseed_tarball"
+npx --yes --package "$rigseed_tarball" rigseed --version
 npx --yes --package "$rigseed_tarball" rigseed --help
 ```
 
-Para testar setup sem atingir sua configuração real, use um diretório temporário
-e Codex 0.160.x já instalado no PATH:
+Para testar o setup, use Codex compatível no PATH e um ambiente temporário:
 
 ```bash
 rigseed_test_dir=$(mktemp -d)
@@ -59,90 +72,78 @@ env HOME="$rigseed_test_dir/home" \
   npx --yes --package "$rigseed_tarball" rigseed doctor --global
 ```
 
-Repita o setup com as mesmas variáveis: espere `No changes required.`.
-O `--yes` do npx aceita executar o pacote; o `--yes` do Rigseed aceita aplicar
-o plano seguro. Nenhum deles autoriza sobrescrever conflitos.
+Repita o setup com as mesmas variáveis e espere `No changes required.`. Também
+verifique diff, update e uninstall nesse ambiente, preservando fixtures com
+configuração e Markdown existentes. Nunca use sua configuração real para testes.
 
-## 3. Enviar o código ao GitHub
-
-Autentique-se pelo fluxo do GitHub CLI, sem colocar tokens no repositório:
+## 4. Revisar o commit e esperar a CI
 
 ```bash
-gh auth login
 git add .
 git diff --cached --stat
 git diff --cached
+git diff --cached --check
+git commit -m "Prepare Rigseed release"
+git push origin main
 ```
 
-Revise os arquivos e a identidade de autoria antes de confirmar o commit. Se
-precisar ajustar a identidade, use configuração local do repositório; não é
-necessário alterar o Git global. Depois:
+Revise os arquivos e a identidade de autoria antes do commit. Se precisar de
+login, execute `gh auth login`. O envio de alterações em workflows exige o
+escopo `workflow`; se o GitHub rejeitar o push por esse motivo, use
+`gh auth refresh -h github.com -s workflow` e tente novamente.
 
-```bash
-git commit -m "Prepare Rigseed 0.1.0"
-git push -u origin main
-```
+Espere a [CI do commit que será publicado](https://github.com/aDDxD/rigseed/actions)
+ficar verde. Não continue com checks pendentes ou falhos. Se corrigir arquivos,
+refaça o pacote e a validação afetada. Trabalhe com a árvore limpa na publicação.
 
-Se o primeiro commit já estiver preparado e `git status --short` estiver vazio,
-não é necessário fazer outro commit: autentique-se e execute apenas o push.
+## 5. Publicar manualmente no npm
 
-O remote já está configurado. Espere a [CI](https://github.com/aDDxD/rigseed/actions)
-ficar verde. Confira os READMEs no GitHub e habilite private vulnerability
-reporting nas configurações de segurança, conforme SECURITY.md.
-
-## 4. Preparar e publicar 0.1.0
-
-Antes de gerar o pacote definitivo, prepare os dois READMEs com as instruções
-de npm publicadas e ajuste o changelog para a versão/data do lançamento.
-Repita a validação e teste esse pacote final. Commit e push dessas alterações;
-publique somente depois de a CI correspondente passar.
-
-Na conta npm, confirme e-mail, 2FA e meios de recuperação. Confira login, versão
-e working tree limpa:
+Confirme que sua conta npm está acessível, com e-mail verificado, 2FA e meios de
+recuperação. Não coloque tokens ou códigos no Git. Confira o nome, a versão e se
+ela já existe:
 
 ```bash
 npm whoami
-npm view @addxd/rigseed version
+npm view "$rigseed_package@$rigseed_version" version
 git status --short
 npm publish --dry-run --access public
 ```
 
-E404 significa que o registry não encontrou o pacote acessível à conta atual;
-não trate erros de conexão ou autenticação como disponibilidade do nome.
-Depois da decisão explícita de publicação:
+E404 indica que o pacote/versão não foi encontrado ou não está acessível à conta
+atual. Não confunda erros de conexão ou autenticação com disponibilidade. Uma
+versão já publicada não pode ser substituída; incremente-a para uma correção.
+
+Somente após a decisão explícita de publicação:
 
 ```bash
 npm publish --access public
 ```
 
-**Esse comando publica de verdade.** Complete a autenticação solicitada.
-Não guarde códigos, tokens ou configuração de autenticação no Git.
+**Esse comando publica de verdade.** Complete a autenticação solicitada pelo npm.
 
-## 5. Conferir a distribuição
-
-```bash
-npm view @addxd/rigseed@0.1.0 version
-npx @addxd/rigseed@0.1.0 --version
-npx @addxd/rigseed@0.1.0 --help
-```
-
-Esses comandos não aplicam configuração. Para validar o setup publicado,
-repita o teste com HOME/CODEX_HOME/XDG_STATE_HOME temporários, usando agora
-`npx @addxd/rigseed@0.1.0` no lugar do tarball local.
-
-Após confirmar sucesso, marque o commit exato publicado:
+## 6. Conferir e marcar o lançamento
 
 ```bash
-git tag -a v0.1.0 -m "Rigseed 0.1.0"
-git push origin v0.1.0
+npm view "$rigseed_package@$rigseed_version" version
+npx "$rigseed_package@$rigseed_version" --version
+npx "$rigseed_package@$rigseed_version" --help
 ```
 
-Uma GitHub Release é opcional. Atualize o [checklist](public-readiness.md) com
-os resultados reais. Versões npm publicadas não são sobrescritas: correções
-exigem uma nova versão.
+Esses comandos não aplicam configuração. Repita o teste de setup/doctor com
+HOME, CODEX_HOME e XDG_STATE_HOME temporários usando o pacote publicado.
+Depois, marque o commit exato do pacote distribuído:
+
+```bash
+git tag -a "v$rigseed_version" -m "Rigseed $rigseed_version"
+git push origin "v$rigseed_version"
+```
+
+Uma GitHub Release é opcional. No primeiro lançamento, conclua o
+[checklist inicial](public-readiness.md), preservando-o como registro do resultado.
+O changelog acompanha as versões seguintes; este guia acompanha o procedimento.
 
 ## Fontes
 
-- [Publicar pacotes públicos com namespace](https://docs.npmjs.com/creating-and-publishing-scoped-public-packages/).
+- [Pacotes públicos com namespace](https://docs.npmjs.com/creating-and-publishing-scoped-public-packages/).
 - [Autenticação para publicação](https://docs.npmjs.com/requiring-2fa-for-package-publishing-and-settings-modification/).
 - [Enviar código local ao GitHub](https://docs.github.com/en/migrations/importing-source-code/using-the-command-line-to-import-source-code/adding-locally-hosted-code-to-github).

@@ -1,4 +1,4 @@
-# Public release checklist / Checklist de publicação pública
+# First release checklist / Checklist do primeiro lançamento
 
 The source is being prepared for public use. This checklist does not publish a
 repository or a package. Version 0.1.0 is still unreleased.
@@ -7,6 +7,9 @@ GitHub: [aDDxD/rigseed](https://github.com/aDDxD/rigseed), public repository cre
 Package: `@addxd/rigseed`; npm login `addxd` verified on 2026-10-03.
 The npm registry returned E404 for the package on that date. The GitHub
 repository is currently empty; the first push and hosted CI are still pending.
+GitHub login is configured, but the first push was rejected because OAuth lacks
+the workflow scope. Refresh that scope before retrying. Private vulnerability
+reporting is enabled; repository description and topics are configured.
 
 ## Repository and user documentation
 
@@ -38,7 +41,7 @@ repository is currently empty; the first push and hosted CI are still pending.
 - [x] Review the initial source and history for sensitive data; local repository starts with a reviewed first commit.
 - [x] Add real repository metadata/links after the URL exists.
 - [ ] Push the reviewed source and first commit to the public repository.
-- [ ] Enable GitHub private vulnerability reporting so SECURITY.md has a usable channel.
+- [x] Enable GitHub private vulnerability reporting so SECURITY.md has a usable channel.
 - [ ] Run the existing CI on GitHub; it does not publish packages.
 
 ## Before publishing npm manually
@@ -55,8 +58,9 @@ repository is currently empty; the first push and hosted CI are still pending.
 
 O repositório público `aDDxD/rigseed` foi criado e os links foram preenchidos.
 O login npm `addxd` foi confirmado; o pacote ainda não foi publicado. Faltam o
-primeiro push, a CI no GitHub e habilitar reports privados de segurança.
+primeiro push e a CI no GitHub. Reports privados de segurança foram habilitados.
+O push exige conceder o escopo workflow ao login do GitHub.
 Antes do npm, revise a segurança da conta, valide o tarball e publique somente
 por decisão explícita. A verificação local integrada está em `discovery.md`.
 
-See [the maintainer publishing guide](publishing.pt-BR.md) for the remaining steps.
+Use [the reusable release guide](publishing.pt-BR.md) for publication and future versions.
