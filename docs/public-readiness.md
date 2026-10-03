@@ -5,11 +5,10 @@ repository or a package. Version 0.1.0 is still unreleased.
 
 GitHub: [aDDxD/rigseed](https://github.com/aDDxD/rigseed), public repository created.
 Package: `@addxd/rigseed`; npm login `addxd` verified on 2026-10-03.
-The npm registry returned E404 for the package on that date. The GitHub
-repository is currently empty; the first push and hosted CI are still pending.
-GitHub login is configured, but the first push was rejected because OAuth lacks
-the workflow scope. Refresh that scope before retrying. Private vulnerability
-reporting is enabled; repository description and topics are configured.
+The npm registry returned E404 for the package on that date. The source has been
+pushed to GitHub and hosted CI passed installation, lint, typecheck, 39 tests and
+build. Private vulnerability reporting is enabled; repository description and
+topics are configured. npm publication is still pending.
 
 ## Repository and user documentation
 
@@ -40,9 +39,9 @@ reporting is enabled; repository description and topics are configured.
 - [x] Choose GitHub repository owner/name; create an empty public repository manually.
 - [x] Review the initial source and history for sensitive data; local repository starts with a reviewed first commit.
 - [x] Add real repository metadata/links after the URL exists.
-- [ ] Push the reviewed source and first commit to the public repository.
+- [x] Push the reviewed source and first commit to the public repository.
 - [x] Enable GitHub private vulnerability reporting so SECURITY.md has a usable channel.
-- [ ] Run the existing CI on GitHub; it does not publish packages.
+- [x] Run the existing CI on GitHub; it does not publish packages.
 
 ## Before publishing npm manually
 
@@ -57,9 +56,9 @@ reporting is enabled; repository description and topics are configured.
 ## Resumo em português
 
 O repositório público `aDDxD/rigseed` foi criado e os links foram preenchidos.
-O login npm `addxd` foi confirmado; o pacote ainda não foi publicado. Faltam o
-primeiro push e a CI no GitHub. Reports privados de segurança foram habilitados.
-O push exige conceder o escopo workflow ao login do GitHub.
+O login npm `addxd` foi confirmado; o pacote ainda não foi publicado. O código
+está no GitHub e a CI passou com 39 testes. Reports privados de segurança foram
+habilitados. A etapa restante é a publicação manual no npm.
 Antes do npm, revise a segurança da conta, valide o tarball e publique somente
 por decisão explícita. A verificação local integrada está em `discovery.md`.
 
