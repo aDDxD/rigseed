@@ -59,6 +59,12 @@ node dist/src/cli.js setup
 node dist/src/cli.js doctor --global
 ```
 
+Dentro do checkout do próprio Rigseed, use `node dist/src/cli.js` após o build.
+`npx @addxd/rigseed@0.1.0` pode escolher o pacote local correspondente em vez
+do registry e falhar com `rigseed: command not found`, porque o checkout não
+tem o próprio binário instalado. Execute o npx em outra pasta para testar o
+pacote publicado; não é necessário instalar globalmente.
+
 `setup` altera a configuração do seu usuário. Revise o dry-run primeiro.
 A primeira instalação em um terminal oferece seleção de modelos e efforts,
 seguida de plano e confirmação. Sem interação, use `--yes`; isso nunca autoriza

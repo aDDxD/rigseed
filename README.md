@@ -58,6 +58,12 @@ node dist/src/cli.js setup
 node dist/src/cli.js doctor --global
 ```
 
+Inside Rigseed's own checkout, use `node dist/src/cli.js` after building.
+`npx @addxd/rigseed@0.1.0` can resolve the matching local package instead of
+the registry package and fail with `rigseed: command not found`, because the
+checkout has no installed self-bin. Run npx from another directory to test
+the published package; a global installation is unnecessary.
+
 `setup` changes your user configuration. Preview first. First-time setup in a
 terminal offers model and effort choices, then a plan and confirmation. Noninteractive
 runs require `--yes`; it never authorizes overwriting conflicting user settings.

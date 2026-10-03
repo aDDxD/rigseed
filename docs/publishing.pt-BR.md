@@ -131,6 +131,9 @@ npx "$rigseed_package@$rigseed_version" --help
 
 Esses comandos não aplicam configuração. Repita o teste de setup/doctor com
 HOME, CODEX_HOME e XDG_STATE_HOME temporários usando o pacote publicado.
+Execute o teste do pacote npm fora do checkout do Rigseed: o npx pode resolver
+o próprio pacote local e falhar ao procurar um binário não instalado. Dentro
+do checkout, use `node dist/src/cli.js` para testar o código compilado.
 Depois, marque o commit exato do pacote distribuído:
 
 ```bash
