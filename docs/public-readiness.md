@@ -53,6 +53,7 @@ Private vulnerability reporting is enabled; description and topics are configure
 - [x] Maintainer published 0.1.0 manually; no release automation or repository secrets.
 - [x] After success, update the GitHub READMEs and changelog to reflect the release.
 - [x] Verify published package commands in temporary HOME, preserving existing user files.
+- [x] Push tag v0.1.0 pointing to the exact published commit ed15b07.
 
 ## Resumo em português
 

@@ -246,6 +246,6 @@ warranty. This does not grant access to OpenAI services or models.
 
 The repository contains portable source/templates, not the author's home paths,
 credentials or machine state. Public source and npm publication are separate
-steps. The [public readiness checklist](docs/public-readiness.md) tracks the manual
-work still needed before the first public release. No package or repository is
-published automatically.
+steps. The [first-release checklist](docs/public-readiness.md) records completed
+checks; the [release guide](docs/publishing.pt-BR.md) covers future versions.
+No package or repository is published automatically.

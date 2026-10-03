@@ -248,5 +248,6 @@ concede acesso a serviços ou modelos da OpenAI.
 
 O repositório contém código/templates portáteis, sem paths pessoais, credenciais
 ou state de máquina. Publicar o código e publicar o pacote são passos separados.
-O [checklist público](docs/public-readiness.md) registra as pendências manuais antes
-da primeira publicação. Não há publicação automática.
+O [checklist inicial](docs/public-readiness.md) registra as verificações concluídas;
+o [guia de releases](docs/publishing.pt-BR.md) orienta as próximas versões.
+Não há publicação automática.
