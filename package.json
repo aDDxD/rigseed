@@ -1,0 +1,61 @@
+{
+  "name": "@addxd/rigseed",
+  "version": "0.1.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aDDxD/rigseed.git"
+  },
+  "homepage": "https://github.com/aDDxD/rigseed#readme",
+  "bugs": {
+    "url": "https://github.com/aDDxD/rigseed/issues"
+  },
+  "description": "Safe, reproducible configuration for AI coding agents",
+  "type": "module",
+  "bin": {
+    "rigseed": "dist/src/cli.js"
+  },
+  "files": [
+    "dist/src",
+    "templates",
+    "examples",
+    "README.md",
+    "README.pt-BR.md",
+    "docs",
+    "LICENSE",
+    "CHANGELOG.md"
+  ],
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "build": "tsc",
+    "typecheck": "tsc --noEmit",
+    "test": "pnpm run build && node --test dist/tests/*.test.js",
+    "lint": "eslint src tests",
+    "prepack": "pnpm run build"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "commander": "^15.0.0",
+    "diff": "^9.0.0",
+    "smol-toml": "^1.9.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@types/node": "^24.19.1",
+    "eslint": "10.11.0",
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.71.0"
+  },
+  "packageManager": "pnpm@12.8.1",
+  "keywords": [
+    "codex",
+    "cli",
+    "agents",
+    "configuration",
+    "developer-tools"
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
+}

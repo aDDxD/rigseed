@@ -1,0 +1,17 @@
+name: Feature request / Sugestão
+description: Explain a concrete configuration workflow that needs improvement.
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem / Problema
+      description: Describe the workflow and what is difficult today.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed behavior / Comportamento proposto
+      description: Include alternatives if useful. Keep the Codex-only scope in mind.
+    validations:
+      required: true

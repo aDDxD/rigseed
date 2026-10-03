@@ -1,0 +1,69 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Rigseed configuration",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "provider",
+    "root",
+    "agents",
+    "maxConcurrentSubagents"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "provider": {
+      "const": "codex"
+    },
+    "root": {
+      "$ref": "#/$defs/role"
+    },
+    "agents": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "sol_orchestrator",
+        "luna_worker"
+      ],
+      "properties": {
+        "sol_orchestrator": {
+          "$ref": "#/$defs/role"
+        },
+        "luna_worker": {
+          "$ref": "#/$defs/role"
+        }
+      }
+    },
+    "maxConcurrentSubagents": {
+      "type": "integer",
+      "minimum": 2,
+      "maximum": 8
+    }
+  },
+  "$defs": {
+    "role": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "model",
+        "reasoning"
+      ],
+      "properties": {
+        "model": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9][a-zA-Z0-9._:/-]{0,127}$"
+        },
+        "reasoning": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9][a-zA-Z0-9._:/-]{0,127}$"
+        }
+      }
+    }
+  }
+}

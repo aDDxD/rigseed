@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "provider": "codex",
+  "root": {
+    "model": "gpt-6-astra",
+    "reasoning": "medium"
+  },
+  "agents": {
+    "sol_orchestrator": {
+      "model": "gpt-6.1-sol",
+      "reasoning": "medium"
+    },
+    "luna_worker": {
+      "model": "gpt-6-luna",
+      "reasoning": "highest"
+    }
+  },
+  "maxConcurrentSubagents": 4
+}
